@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXContainerItemProxy section */
@@ -30,7 +30,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		A56068912D4A3873007A484D /* Exceptions for "todoList" folder in "todoList" target */ = {
+		A56068912D4A3873007A484D /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -40,24 +40,9 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		A56068682D4A3872007A484D /* todoList */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				A56068912D4A3873007A484D /* Exceptions for "todoList" folder in "todoList" target */,
-			);
-			path = todoList;
-			sourceTree = "<group>";
-		};
-		A56068822D4A3873007A484D /* todoListTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = todoListTests;
-			sourceTree = "<group>";
-		};
-		A560688C2D4A3873007A484D /* todoListUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = todoListUITests;
-			sourceTree = "<group>";
-		};
+		A56068682D4A3872007A484D /* todoList */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (A56068912D4A3873007A484D /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = todoList; sourceTree = "<group>"; };
+		A56068822D4A3873007A484D /* todoListTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = todoListTests; sourceTree = "<group>"; };
+		A560688C2D4A3873007A484D /* todoListUITests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = todoListUITests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +185,7 @@
 				};
 			};
 			buildConfigurationList = A56068612D4A3872007A484D /* Build configuration list for PBXProject "todoList" */;
+			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -208,7 +194,8 @@
 			);
 			mainGroup = A560685D2D4A3872007A484D;
 			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
+			packageReferences = (
+			);
 			productRefGroup = A56068672D4A3872007A484D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
