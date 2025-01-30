@@ -15,10 +15,13 @@ class TaskCell: UITableViewCell {
     private var task: Task?
     
     var onCheckmarkTap: (() -> Void)?
+    var onLongPress: (() -> Void)?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(didLongPress))
+        self.addGestureRecognizer(longPressGesture)
     }
     
     required init?(coder: NSCoder) {
@@ -58,15 +61,19 @@ class TaskCell: UITableViewCell {
             titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
         
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapCheckmark))
-        checkmarkView.addGestureRecognizer(tapGestureRecognizer)
+//        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapCheckmark))
+//        checkmarkView.addGestureRecognizer(tapGestureRecognizer)
         checkmarkView.isUserInteractionEnabled = true
         
     }
     
-    @objc private func didTapCheckmark() {
-            onCheckmarkTap?()
-        }
+//    @objc private func didTapCheckmark() {
+//            onCheckmarkTap?()
+//        }
+    
+    @objc private func didLongPress() {
+        onLongPress?()
+    }
 
     func configure(with task: Task) {
         titleLabel.attributedText = nil
