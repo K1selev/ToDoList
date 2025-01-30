@@ -9,6 +9,7 @@ import UIKit
 
 protocol ToDoListRouterProtocol {
     func navigateToTaskDetail()
+    func navigateToEditTask(_ task: Task)
 }
 
 class ToDoListRouter: ToDoListRouterProtocol {
@@ -29,5 +30,10 @@ class ToDoListRouter: ToDoListRouterProtocol {
     func navigateToTaskDetail() {
 //        let detailVC = TaskDetailViewController()
 //        viewController?.navigationController?.pushViewController(detailVC, animated: true)
+    }
+    
+    func navigateToEditTask(_ task: Task) {
+//        let editVC = EditTaskViewController(task: task)
+//        viewController?.present(editVC, animated: true)
     }
 }

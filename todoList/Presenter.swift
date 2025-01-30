@@ -11,7 +11,6 @@ protocol ToDoListPresenterProtocol {
     func updateTask(_ task: Task)
 }
 
-
 class ToDoListPresenter: ToDoListPresenterProtocol {
     weak var view: ToDoListViewProtocol?
     private let interactor: ToDoListInteractorProtocol
@@ -31,10 +30,9 @@ class ToDoListPresenter: ToDoListPresenterProtocol {
             self?.view?.reloadData()
         }
     }
-    
     func updateTask(_ task: Task) {
-        if let index = tasks.firstIndex(where: { $0.id == task.id }) {
-            tasks[index] = task
+            if let index = tasks.firstIndex(where: { $0.id == task.id }) {
+                tasks[index] = task
+            }
         }
-    }
 }
