@@ -12,7 +12,6 @@ class TaskCell: UITableViewCell {
     private let checkmarkView = UIView()
     private let checkmarkLabel = UILabel()
     private let titleLabel = UILabel()
-    private var task: Task?
     
     var onCheckmarkTap: (() -> Void)?
     var onLongPress: (() -> Void)?
@@ -61,40 +60,36 @@ class TaskCell: UITableViewCell {
             titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
         
-//        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapCheckmark))
-//        checkmarkView.addGestureRecognizer(tapGestureRecognizer)
         checkmarkView.isUserInteractionEnabled = true
-        
     }
-    
-//    @objc private func didTapCheckmark() {
-//            onCheckmarkTap?()
-//        }
     
     @objc private func didLongPress() {
         onLongPress?()
     }
 
-    func configure(with task: Task) {
+    func configure(with taskEntity: TaskEntity) {
         titleLabel.attributedText = nil
-        if task.isCompleted {
+        guard let title = taskEntity.title else { return }
+        
+        let isCompleted = taskEntity.isCompleted
+        
+        if isCompleted {
             checkmarkView.layer.borderColor = UIColor.yellow.cgColor
             checkmarkView.backgroundColor = .clear
             checkmarkLabel.text = "✓"
             checkmarkLabel.textColor = .yellow
 
             titleLabel.textColor = .gray
-            let attributeString = NSMutableAttributedString(string: task.title)
+            let attributeString = NSMutableAttributedString(string: title)
             attributeString.addAttribute(.strikethroughStyle,
                                          value: NSUnderlineStyle.single.rawValue,
-                                         range: NSRange(location: 0, length: task.title.count))
+                                         range: NSRange(location: 0, length: title.count))
             titleLabel.attributedText = attributeString
         } else {
             checkmarkView.layer.borderColor = UIColor.gray.cgColor
             checkmarkView.backgroundColor = .clear
             checkmarkLabel.text = ""
-            let attributeString = NSMutableAttributedString(string: task.title)
-            titleLabel.attributedText = attributeString
+            titleLabel.text = title
             titleLabel.textColor = .white
         }
     }
