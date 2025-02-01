@@ -19,8 +19,8 @@ class ToDoListViewController: UIViewController, ToDoListViewProtocol {
     private let searchController = UISearchController(searchResultsController: nil)
     private let addButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(systemName: "plus"), for: .normal)
-        button.tintColor = .yellow
+        button.setImage(UIImage(systemName: "square.and.pencil"), for: .normal)
+        button.tintColor = UIColor(named: "CustomYellow")
         return button
     }()
 
@@ -64,7 +64,7 @@ class ToDoListViewController: UIViewController, ToDoListViewProtocol {
         
         let toolbar = UIToolbar()
         toolbar.translatesAutoresizingMaskIntoConstraints = false
-        toolbar.barTintColor = .darkGray
+        toolbar.barTintColor = UIColor(named: "CustomDarkGray")
         view.addSubview(toolbar)
         
         NSLayoutConstraint.activate([
@@ -100,8 +100,9 @@ class ToDoListViewController: UIViewController, ToDoListViewProtocol {
         taskCountLabel.text = "Задач: \(totalTasks)"
     }
 
-    @objc private func didTapAddTask() {
-        print("Создание новой задачи")
+    @objc func didTapAddTask() {
+        let newTaskVC = NewTaskModuleBuilder.build()
+        navigationController?.pushViewController(newTaskVC, animated: true)
     }
 
     func updateFilteredTasks(with searchText: String) {
@@ -163,7 +164,7 @@ extension ToDoListViewController {
             }
     
             let taskView = UIView()
-            taskView.backgroundColor = .darkGray
+            taskView.backgroundColor = UIColor(named: "CustomDarkGray")
             taskView.layer.cornerRadius = 10
             taskView.tag = 99
             taskView.translatesAutoresizingMaskIntoConstraints = false
@@ -184,7 +185,7 @@ extension ToDoListViewController {
             menuView.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview(menuView)
     
-            let editButton = createMenuButton(title: "Редактировать", icon: "pencil", color: .black, action: {
+            let editButton = createMenuButton(title: "Редактировать", icon: "edit", color: .black, action: {
                 self.hideContextMenu(blurView, menuView, taskView)
                 let editVC = EditTaskViewController()
                 editVC.task = task
@@ -197,8 +198,8 @@ extension ToDoListViewController {
                 self.hideContextMenu(blurView, menuView, taskView)
             })
     
-            let shareButton = createMenuButton(title: "Поделиться", icon: "square.and.arrow.up", color: .black, action: {
-                let activityVC = UIActivityViewController(activityItems: [task.title], applicationActivities: nil)
+            let shareButton = createMenuButton(title: "Поделиться", icon: "export", color: .black, action: {
+                let activityVC = UIActivityViewController(activityItems: [task.title ?? ""], applicationActivities: nil)
                 self.present(activityVC, animated: true)
                 self.hideContextMenu(blurView, menuView, taskView)
                 self.hideContextMenu(blurView, menuView, taskView)
@@ -275,7 +276,7 @@ extension ToDoListViewController {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         button.contentHorizontalAlignment = .left
         
-        let iconImage = UIImage(systemName: icon)
+        let iconImage = UIImage(named: icon)
         let iconView = UIImageView(image: iconImage)
         iconView.tintColor = color
         iconView.translatesAutoresizingMaskIntoConstraints = false

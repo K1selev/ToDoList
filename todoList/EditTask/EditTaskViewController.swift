@@ -12,10 +12,7 @@ class EditTaskViewController: UIViewController {
     var task: TaskEntity!
     var onSave: ((TaskEntity) -> Void)?
     
-    private let titleTextField = UITextField()
-//    private let isCompletedSwitch = UISwitch()
-//    private let saveButton = UIButton(type: .system)
-//    private let cancelButton = UIButton(type: .system)
+    let titleTextField = UITextField()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +42,6 @@ class EditTaskViewController: UIViewController {
     private func setupNavigationBar() {
         //            title = "Edit Task"
         
-        // Set the appearance of the navigation bar
         navigationController?.navigationBar.barTintColor = .black
         navigationController?.navigationBar.titleTextAttributes = [
             .foregroundColor: UIColor.white
@@ -53,9 +49,9 @@ class EditTaskViewController: UIViewController {
         
         let backButton = UIButton(type: .system)
         backButton.setTitle(" Назад", for: .normal)
-        backButton.setTitleColor(.yellow, for: .normal)
+        backButton.setTitleColor(UIColor(named: "CustomYellow"), for: .normal)
         backButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
-        backButton.tintColor = .yellow
+        backButton.tintColor = UIColor(named: "CustomYellow")
         backButton.addTarget(self, action: #selector(didTapSave), for: .touchUpInside)
         
         backButton.contentHorizontalAlignment = .left
@@ -71,13 +67,13 @@ class EditTaskViewController: UIViewController {
         titleTextField.text = task.title
     }
 
-    @objc private func didTapSave() {
+    @objc func didTapSave() {
         task.title = titleTextField.text ?? ""
         onSave?(task)
         navigationController?.popViewController(animated: true)
     }
 
-    @objc private func didTapCancel() {
+    @objc func didTapCancel() {
         navigationController?.popViewController(animated: true)
     }
 }
