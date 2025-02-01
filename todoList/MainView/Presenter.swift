@@ -38,7 +38,7 @@ class ToDoListPresenter: ToDoListPresenterProtocol {
             interactor.fetchTasks { [weak self] tasks in
                 guard let self = self else { return }
                 for task in tasks {
-                    CoreDataManager.shared.addTask(title: task.title ?? "")
+                    CoreDataManager.shared.addTask(title: task.title)
                 }
                 UserDefaults.standard.setValue(true, forKey: self.hasLoadedTasksKey)
                 

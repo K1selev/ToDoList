@@ -10,9 +10,19 @@ import UIKit
 
 class CoreDataManager {
     static let shared = CoreDataManager()
-    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    public let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let persistentContainer: NSPersistentContainer
+    private init() {
+        persistentContainer = NSPersistentContainer(name: "YourDataModelName") // Replace with your actual .xcdatamodeld file name
+        persistentContainer.loadPersistentStores { _, error in
+            if let error = error {
+                fatalError("Failed to load Core Data stack: \(error)")
+            }
+        }
+    }
 
-    private func saveContext() {
+
+    func saveContext() {
         do {
             try context.save()
         } catch {

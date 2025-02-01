@@ -36,7 +36,7 @@ class TaskCell: UITableViewCell {
         checkmarkView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(checkmarkView)
         
-        checkmarkLabel.textColor = .yellow
+        checkmarkLabel.textColor = UIColor(named: "CustomYellow")
         checkmarkLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         checkmarkLabel.textAlignment = .center
         checkmarkLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -63,7 +63,7 @@ class TaskCell: UITableViewCell {
         checkmarkView.isUserInteractionEnabled = true
     }
     
-    @objc private func didLongPress() {
+    @objc func didLongPress() {
         onLongPress?()
     }
 
@@ -74,10 +74,10 @@ class TaskCell: UITableViewCell {
         let isCompleted = taskEntity.isCompleted
         
         if isCompleted {
-            checkmarkView.layer.borderColor = UIColor.yellow.cgColor
+            checkmarkView.layer.borderColor = UIColor(named: "CustomYellow")?.cgColor
             checkmarkView.backgroundColor = .clear
             checkmarkLabel.text = "✓"
-            checkmarkLabel.textColor = .yellow
+            checkmarkLabel.textColor = UIColor(named: "CustomYellow")
 
             titleLabel.textColor = .gray
             let attributeString = NSMutableAttributedString(string: title)
